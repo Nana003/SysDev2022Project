@@ -1,17 +1,9 @@
-
 <?php require APPROOT . '/views/includes/header.php'; ?>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/templatemo-style-devrin.css">
+<link rel="stylesheet" href="<?php echo URLROOT; ?>/css/templatemo-styleigor.css">
+
 <body>
 
-    <nav>
-        <div class="logo">
-            <a href="index.html">ShortLight <em>Productions</em></a>
-        </div>
-      <div class="menu-icon">
-        <span></span>
-      </div>
-    </nav>
+<?php require APPROOT . '/views/includes/nav.php'; ?>
 
     <div class="page-heading">
         <div class="container">
@@ -43,40 +35,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- list all your guys -->
-                            <tr>
-                                <td>
-                                    John Doe
-                                </td>
-                                <td>
-                                    <a href="#">Rename</a>
-                                </td>
-                                <td>
-                                    <a href="#">Revoke</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Amelia Flame
-                                </td>
-                                <td>
-                                    <a href="#">Rename</a>
-                                </td>
-                                <td>
-                                    <a href="#">Revoke</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    AWWWWWWW BWWWWWWW
-                                </td>
-                                <td>
-                                    <a href="#">Rename</a>
-                                </td>
-                                <td>
-                                    <a href="#">Revoke</a>
-                                </td>
-                            </tr>
+                            <?php
+                                foreach ($data["admins"] as $admin)
+                                {
+                                    echo "<tr>";
+                                        echo "<td>";
+                                            echo($admin->admin_name);
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Rename</a>";
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Revoke</a>";
+                                        echo "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -93,9 +67,6 @@
                                     Post Title
                                 </td>
                                 <td colspan="1">
-                                    Post Page
-                                </td>
-                                <td colspan="1">
                                     Author
                                 </td>
                                 <td colspan="2">
@@ -105,40 +76,25 @@
                         </thead>
                         <tbody>
                             <!-- list of posts -->
-                            <tr>
-                                <td>
-                                    Work Ethic
-                                </td>
-                                <td>
-                                    <a href="#">About Us</a>
-                                </td>
-                                <td>
-                                    Amelia Flame
-                                </td>
-                                <td>
-                                    <a href="#">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="#">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Journeys in Photography
-                                </td>
-                                <td>
-                                    <a href="#">Personal Projects</a>
-                                </td>
-                                <td>
-                                    AWWWWWWW BWWWWWWW
-                                </td>
-                                <td>
-                                    <a href="#">Edit</a>
-                                </td>
-                                <td>
-                                    <a href="#">Delete</a>
-                                </td>
-                            </tr>
+                            <?php
+                                foreach ($data["posts"] as $post)
+                                {
+                                    echo "<tr>";
+                                        echo "<td>";
+                                            echo($post->post_title);
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo($data["adminModel"]->getAdmin($post->admin_id));
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Edit</a>";
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Delete</a>";
+                                        echo "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -166,101 +122,36 @@
                         </thead>
                         <tbody>
                             <!-- list of actions logged -->
-                            <tr>
-                                <td>
-                                    ADMIN_MAKE
-                                </td>
-                                <td>
-                                    1648832439
-                                </td>
-                                <td>
-                                    46.8.8.12
-                                </td>
-                                <td>
-                                    WEBMASTER
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    POST_CREATE
-                                </td>
-                                <td>
-                                    1643752839
-                                </td>
-                                <td>
-                                    70.52.4.108
-                                </td>
-                                <td>
-                                    Amelia Flame
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    POST_EDIT
-                                </td>
-                                <td>
-                                    1643774739
-                                </td>
-                                <td>
-                                    40.158.8.1
-                                </td>
-                                <td>
-                                    AWWWWWWW BWWWWWWW
-                                </td>
-                            </tr>
+                            <?php
+                                foreach ($data["actions"] as $action)
+                                {
+                                    echo "<tr>";
+                                        echo "<td>";
+                                            echo($action->action_name);
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo(date('m/d/Y H:i:s', $action->timestamp));
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo($action->ip_address);
+                                        echo "</td>";
+                                        echo "<td>";
+                                        echo($data["adminModel"]->getAdmin($action->admin_id));
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Rename</a>";
+                                        echo "</td>";
+                                        echo "<td>";
+                                            echo "<a href='#'>Revoke</a>";
+                                        echo "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    
-<footer>
-        <div class="container-fluid">
-            <div class="col-md-12">
-                <p>Copyright &copy; 2022 Shortlight Productions</p>
-            </div>
-        </div>
-</footer>
 
-
-  
-    
-
-    <section class="overlay-menu">
-      <div class="container">
-        <div class="row">
-          <div class="main-menu">
-              <ul>
-                  <li>
-                      <a href="index.html">Home - Full-width</a>
-                  </li>
-                  <li>
-                      <a href="masonry.html">Home - Masonry</a>
-                  </li>
-                  <li>
-                      <a href="grid.html">Home - Small-width</a>
-                  </li>
-                  <li>
-                      <a href="about.html">About Us</a>
-                  </li>
-                  <li>
-                      <a href="blog.html">Blog Entries</a>
-                  </li>
-                  <li>
-                      <a href="single-post.html">Single Post</a>
-                  </li>
-              </ul>
-              <p>We create awesome templates for you</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="<?php echo URLROOT; ?>/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-    <script src="<?php echo URLROOT; ?>/js/vendor/bootstrap.min.js"></script>
-    
-    <script src="<?php echo URLROOT; ?>/js/plugins.js"></script>
-    <script src="<?php echo URLROOT; ?>/js/main.js"></script>
+<?php require APPROOT . '/views/includes/footer.php'; ?>
