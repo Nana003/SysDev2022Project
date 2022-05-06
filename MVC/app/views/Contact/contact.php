@@ -140,7 +140,7 @@
       <div class="col-md-4 col-sm-6">
         <div class="service-item">
           <div class="icon">
-            <img src="<?php echo URLROOT; ?>/img/facebook.png" alt="">
+            <img src="<?php echo URLROOT; ?>/img/fb.png" alt="">
           </div>
           <div class="text">
             <h4>Facebook</h4>
@@ -151,7 +151,8 @@
       <div class="col-md-4 col-sm-6">
         <div class="service-item">
           <div class="icon">
-            <img src="<?php echo URLROOT; ?>/img/instagram.jpg" alt="">
+          <a href="https://www.instagram.com/shortlightproductions/">
+            <img src="<?php echo URLROOT; ?>/img/ig.jpg" alt="">
           </div>
           <div class="text">
             <h4>Instagram</h4>
@@ -162,7 +163,7 @@
       <div class="col-md-4 col-sm-6">
         <div class="service-item">
           <div class="icon">
-            <img src="<?php echo URLROOT; ?>/img/email.png" alt="">
+            <img src="<?php echo URLROOT; ?>/img/mail.png" alt="">
           </div>
           <div class="text">
             <h4>Email</h4>
