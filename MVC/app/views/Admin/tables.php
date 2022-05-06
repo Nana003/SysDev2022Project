@@ -84,7 +84,15 @@
                                             echo($post->post_title);
                                         echo "</td>";
                                         echo "<td>";
-                                            echo($data["adminModel"]->getAdmin($post->admin_id));
+                                            $admin = $data["adminModel"]->getAdmin($post->admin_id);
+                                            if ($admin == false)
+                                            {
+                                                echo "Unknown"
+                                            }
+                                            else
+                                            {
+                                                echo($admin->admin_name);
+                                            }
                                         echo "</td>";
                                         echo "<td>";
                                             echo "<a href='#'>Edit</a>";
@@ -136,7 +144,15 @@
                                             echo($action->ip_address);
                                         echo "</td>";
                                         echo "<td>";
-                                        echo($data["adminModel"]->getAdmin($action->admin_id));
+                                            $admin = $data["adminModel"]->getAdmin($action->admin_id);
+                                            if ($admin == false)
+                                            {
+                                                echo "Unknown"
+                                            }
+                                            else
+                                            {
+                                                echo($admin->admin_name);
+                                            }
                                         echo "</td>";
                                         echo "<td>";
                                             echo "<a href='#'>Rename</a>";
