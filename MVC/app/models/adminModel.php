@@ -16,7 +16,7 @@
         }
 
         public function createAdmin($data){
-            $this->db->query("INSERT INTO admins (admin_admin_name, admin_pass_hash, admin_mail) values (:admin_admin_name, :admin_pass_hash, :admin_mail)");
+            $this->db->query("INSERT INTO admins (admin_name, admin_pass_hash, admin_mail) values (:admin_name, :admin_pass_hash, :admin_mail)");
             $this->db->bind(':admin_name', $data['admin_name']);
             $this->db->bind(':admin_pass_hash', $data['admin_pass_hash']);
             $this->db->bind(':admin_mail', $data['admin_mail']);

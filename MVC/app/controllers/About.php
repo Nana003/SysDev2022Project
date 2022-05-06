@@ -3,6 +3,8 @@ class About extends Controller
 {
     public function __construct()
     {
+        
+        $this->postModel = $this->model('postsModel');
     }
 
     public function index()
@@ -10,6 +12,7 @@ class About extends Controller
         $this->view('About/aboutus');
     }
     public function pastworks(){
-        $this->view('About/pastworks');
+        $data = $this->postModel->getPosts();
+        $this->view('About/pastworks',$data);
     }
 }

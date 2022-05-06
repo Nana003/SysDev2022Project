@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2022 at 09:14 PM
+-- Generation Time: May 06, 2022 at 03:13 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -34,6 +34,13 @@ CREATE TABLE `admins` (
   `admin_mail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`admin_id`, `admin_name`, `admin_pass_hash`, `admin_mail`) VALUES
+(1, 'armen', 'hashedpass', 'yogmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +57,13 @@ CREATE TABLE `form_response` (
   `message` varchar(2000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `form_response`
+--
+
+INSERT INTO `form_response` (`form_id`, `service`, `client_name`, `client_surname`, `client_email`, `client_phone`, `message`) VALUES
+(1, 'wedding', 'Armen ', 'Jabamikos', 'armenjamgotchian@gmail.com', '5146639579', 'hi guys first time trying');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +77,13 @@ CREATE TABLE `posts` (
   `post_media_source` varchar(100) NOT NULL,
   `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `description`, `post_title`, `post_media_source`, `admin_id`) VALUES
+(1, 'description of the asdlfas', 'title of the post', 'https://www.youtube.com/embed/2ANtdCySCRY', 1);
 
 -- --------------------------------------------------------
 
@@ -116,19 +137,19 @@ ALTER TABLE `telemetry_action`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `form_response`
 --
 ALTER TABLE `form_response`
-  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `form_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `telemetry_action`

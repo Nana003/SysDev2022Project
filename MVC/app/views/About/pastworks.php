@@ -12,15 +12,16 @@
     </div>
 
 <div class="container">
-  <h1>Our Recent Wedding Video</h1>
+    <?php foreach($data as $post){
+  echo "<h1>".$post->post_title.'</h1>
     <div class="youtubevideo">
       <iframe width="760" height="515"
-      src="https://www.youtube.com/embed/2ANtdCySCRY">
+      src="'.$post->post_media_source.'">
       </iframe>
-      <a href="about.html">Contact Us</a>
+      <p>'.$post->description.'</p>
       <br><br>
-    </div>
-    
+    </div>';
+    }?>
   </div>
 
   <div class="services">
