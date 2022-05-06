@@ -17,8 +17,8 @@
         <div class="container">
             <div class="col-md-5 col-md-offset-7">
                 <div class="content">
-                    <h2>Aenean vehicula tincidunt</h2>
-                    <span>Donec et nisi sed</span>
+                    <h2>ABOUT US</h2>
+                    <span>Nicolas and Jacob</span>
                     <p>Vivamus vitae libero euismod, pretium magna a, vulputate metus. Curabitur et arcu felis. Praesent aliquet lectus in purus viverra varius. 
                     <br><br>Suspendisse et rutrum nisl. Phasellus porttitor metus vel justo blandit, in finibus neque elementum. Nullam semper, turpis quis egestas consequat, dui eros tristique lectus, ac euismod ex quam id mauris.</p>
                     <div class="simple-btn">
