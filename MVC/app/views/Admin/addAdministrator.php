@@ -16,7 +16,7 @@
 </style>   
 </head>    
 <body>    
-    <form>  
+    <form method="post" action="">  
         <div class="container">   
             <label>Name : </label>   
             <input type="text" placeholder="Name" name="name" required>  
@@ -28,7 +28,7 @@
             <input type="password" placeholder="Admin email" name="adminEmail" required>  
             <button type="submit" id="addAdmin" name="addAdmin">Add</button> 
         </div>   
-    </form>     
-</body>     
+    </form>
+</body>
 </html> 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

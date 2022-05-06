@@ -57,4 +57,10 @@
             }
 
         }
+
+        public function getAdminByUsername($admin_name){
+            $this->db->query("SELECT * FROM admins WHERE admin_name = :admin_name");
+            $this->db->bind(':admin_name',$admin_name);
+            return $this->db->getSingle();
+        }
     }

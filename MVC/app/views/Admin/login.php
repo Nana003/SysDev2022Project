@@ -16,12 +16,16 @@
 </style>   
 </head>    
 <body>    
-    <form>  
-        <div class="container">   
-            <label>Username : </label>   
-            <input type="text" placeholder="Enter Username" name="username" required>  
-            <label>Password : </label>   
-            <input type="password" placeholder="Enter Password" name="password" required>  
+    <form class="px-4 py-3" method="post" action="">  
+        <div class="container">
+            <div class="form-group">
+                <label>Username : </label>   
+                <input type="text" placeholder="Enter Username" name="username" required>  
+            </div>
+            <div class="form-group">
+                <label>Password : </label>   
+                <input type="password" placeholder="Enter Password" name="password" required>  
+            </div>
             <button type="submit" name="login">Login</button> 
             <div style="text-align: center;">
             <input type="checkbox"> Remember me</div>   

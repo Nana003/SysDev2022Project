@@ -76,12 +76,12 @@ class Admin extends Controller
             $this->view('Admin/addAdministrator');
         }
         else{
-            $admin = $this->adminModel->getAdmin($_POST['name']);
+            $admin = $this->adminModel->getAdminByUsername($_POST['name']);
             if($admin == null){
                 $data = [
-                    'admin_name' => trim($_POST(['name'])),
-                    'admin_pass_hash' => pass_hash($_POST(['passwd'])),
-                    'admin_mail' => trim($_POST(['admin_mail']))
+                    'admin_name' => trim($_POST['name']),
+                    'admin_pass_hash' => password_hash($_POST['passwd'], PASSWORD_DEFAULT),
+                    'admin_mail' => trim($_POST['adminEmail'])
                 ];
                 if($this->adminModel->createAdmin($data)){
                         echo 'Please wait creating the account for '.trim($_POST['name']);
@@ -93,8 +93,7 @@ class Admin extends Controller
                     'msg' => "Admin: ". $_POST['name'] ." already exists",
                 ];
                 $this->view('Admin/addAdministrator',$data);
-            }
-            
+            }  
         }
-    }       
+    } 
 }
