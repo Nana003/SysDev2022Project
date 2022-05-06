@@ -26,7 +26,7 @@
             <input type="password" placeholder="Confirm password" name="retypePasswd" required> 
             <label>Admin Email : </label>   
             <input type="password" placeholder="Admin email" name="adminEmail" required>  
-            <button type="submit" id="addPost" name="addPost">Add</button> 
+            <button type="submit" id="addAdmin" name="addAdmin">Add</button> 
         </div>   
     </form>     
 </body>     
