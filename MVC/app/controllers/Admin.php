@@ -14,7 +14,7 @@ class Admin extends Controller
             $this->view('Admin/login');
         }
         else{
-            $admin = $this->adminModel->getAdmin($_POST['username']);
+            $admin = $this->adminModel->getAdminByUsername($_POST['username']);
             
             if($admin != null){
                 $hashed_pass = $admin->admin_pass_hash;

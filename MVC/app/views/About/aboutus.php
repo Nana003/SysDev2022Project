@@ -18,12 +18,9 @@
             <div class="col-md-5 col-md-offset-7">
                 <div class="content">
                     <h2>ABOUT US</h2>
-                    <span>Nicolas and Jacob</span>
-                    <p>Vivamus vitae libero euismod, pretium magna a, vulputate metus. Curabitur et arcu felis. Praesent aliquet lectus in purus viverra varius. 
-                    <br><br>Suspendisse et rutrum nisl. Phasellus porttitor metus vel justo blandit, in finibus neque elementum. Nullam semper, turpis quis egestas consequat, dui eros tristique lectus, ac euismod ex quam id mauris.</p>
-                    <div class="simple-btn">
-                        <a href="#">Continue Reading</a>
-                    </div>
+                    <span>Our minimized intro/goal</span>
+                    <p>Our focus is your vision. Let us be the hands that shape your ideas. 
+                    <br><br>We love to learn from each business and bring out the hidden beauties of your enterprise. We specialize in videography, working on projects that we are passionate about. Curious, interested, passionate but most importantly, at your service. The partner comes first.</p>
                 </div>
             </div>
         </div>
