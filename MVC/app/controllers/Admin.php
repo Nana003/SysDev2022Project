@@ -47,7 +47,6 @@ class Admin extends Controller
 
     public function forgot()
     {
-        //TODO: login validate (isLoggedIn())
         if (!isset($_POST['reset'])) {
             $this->view('Admin/forgot');
         } else {
@@ -96,7 +95,15 @@ class Admin extends Controller
 
     public function tables()
     {
-        //TODO: login validate (isLoggedIn())
+        if (!isLoggedIn()) {
+            logAction("TELEMETRY_ACCESS_DENIED");
+            $data = [
+                'msg' => "Access denied; please log in.",
+            ];
+            $this->view('Admin/login', $data);
+            return;
+        }
+
         logAction("TELEMETRY_READ");
         $data = [
             'adminModel' => $this->adminModel,
@@ -109,7 +116,15 @@ class Admin extends Controller
 
     public function addPost()
     {
-        //TODO: login validate (isLoggedIn())
+        if (!isLoggedIn()) {
+            logAction("POST_CREATE_ACCESS_DENIED");
+            $data = [
+                'msg' => "Access denied; please log in.",
+            ];
+            $this->view('Admin/login', $data);
+            return;
+        }
+
         if (!isset($_GET['addPost'])) {
             $this->view('Admin/addPost');
         } else {
@@ -127,7 +142,15 @@ class Admin extends Controller
 
     public function addAdministrator()
     {
-        //TODO: login validate WEBMASTER (isLoggedInWebmaster())
+        if (!isLoggedInWebmaster()) {
+            logAction("ADMIN_CREATE_ACCESS_DENIED");
+            $data = [
+                'msg' => "Access denied; please log in.",
+            ];
+            $this->view('Admin/login', $data);
+            return;
+        }
+
         if (!isset($_POST['addAdmin'])) {
             $this->view('Admin/addAdministrator');
         } else {
