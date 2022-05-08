@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2022 at 03:13 AM
+-- Generation Time: May 08, 2022 at 02:25 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -94,9 +94,9 @@ INSERT INTO `posts` (`post_id`, `description`, `post_title`, `post_media_source`
 CREATE TABLE `telemetry_action` (
   `action_id` int(11) NOT NULL,
   `action_type` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` int(11) NOT NULL,
   `ip_address` varchar(100) DEFAULT NULL,
-  `admin_id` int(11) NOT NULL
+  `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

@@ -23,7 +23,7 @@
                     </h1>  
                     <a href="addAdministrator">Add Administrator</a>
                     <!-- table listing all admins -->
-                    <table class="table table-bordered table table-striped table-hover">
+                    <table class="table table-bordered table table-striped table-hover bg-light">
                         <thead>
                             <tr class="bg-info bg-gradient">
                                 <td colspan="1">
@@ -60,7 +60,7 @@
                     </h1>  
                     <a href="addPost">Add Post</a>
                     <!-- table listing all posts -->
-                    <table class="table table-bordered table table-striped table-hover">
+                    <table class="table table-bordered table table-striped table-hover bg-light">
                         <thead>
                             <tr class="bg-info bg-gradient">
                                 <td colspan="1">
@@ -111,7 +111,7 @@
                         Site Activity
                     </h1>  
                     <!-- everything that happened on the site -->
-                    <table class="table table-bordered table table-striped table-hover">
+                    <table class="table table-bordered table table-striped table-hover bg-light">
                         <thead>
                             <tr class="bg-info bg-gradient">
                                 <td colspan="1">
@@ -135,7 +135,7 @@
                                 {
                                     echo "<tr>";
                                         echo "<td>";
-                                            echo($action->action_name);
+                                            echo($action->action_type);
                                         echo "</td>";
                                         echo "<td>";
                                             echo(date('m/d/Y H:i:s', $action->timestamp));
@@ -153,12 +153,6 @@
                                             {
                                                 echo($admin->admin_name);
                                             }
-                                        echo "</td>";
-                                        echo "<td>";
-                                            echo "<a href='#'>Rename</a>";
-                                        echo "</td>";
-                                        echo "<td>";
-                                            echo "<a href='#'>Revoke</a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
