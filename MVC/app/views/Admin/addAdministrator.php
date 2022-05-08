@@ -25,7 +25,7 @@
             <label>Retype Password : </label>   
             <input type="password" placeholder="Confirm password" name="retypePasswd" required> 
             <label>Admin Email : </label>   
-            <input type="password" placeholder="Admin email" name="adminEmail" required>  
+            <input type="text" placeholder="Admin email" name="adminEmail" required>  
             <button type="submit" id="addAdmin" name="addAdmin">Add</button> 
         </div>   
     </form>

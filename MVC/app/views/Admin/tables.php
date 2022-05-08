@@ -21,7 +21,7 @@
                     <h1>
                         Manage Administrators
                     </h1>  
-                    <a href="addAdministrator">Add Administrator</a>
+                    <a href="Admin/addAdministrator">Add Administrator</a>
                     <!-- table listing all admins -->
                     <table class="table table-bordered table table-striped table-hover bg-light">
                         <thead>
@@ -58,7 +58,7 @@
                     <h1>
                         Manage Posts
                     </h1>  
-                    <a href="addPost">Add Post</a>
+                    <a href="Admin/addPost">Add Post</a>
                     <!-- table listing all posts -->
                     <table class="table table-bordered table table-striped table-hover bg-light">
                         <thead>

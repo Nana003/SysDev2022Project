@@ -122,7 +122,8 @@ class Admin extends Controller
             if($admin == null){
                 $data = [
                     'admin_name' => trim($_POST['name']),
-                    'admin_pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT)
+                    'admin_pass_hash' => password_hash($_POST['passwd'], PASSWORD_DEFAULT),
+                    'admin_mail' => trim($_POST['adminEmail'])
                 ];
                 if($this->adminModel->createAdmin($data)){
                         logAction("ADMIN_CREATE");
