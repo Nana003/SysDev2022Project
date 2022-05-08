@@ -63,4 +63,17 @@
             $this->db->bind(':admin_name',$admin_name);
             return $this->db->getSingle();
         }
+
+         public function updateAdminPass($data){
+            $this->db->query("UPDATE admins SET admin_pass_hash=:admin_pass_hash WHERE admin_name=:admin_name");
+            $this->db->bind(':admin_name', $data['admin_name']);
+            $this->db->bind(':admin_pass_hash', $data['admin_pass_hash']);
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
     }

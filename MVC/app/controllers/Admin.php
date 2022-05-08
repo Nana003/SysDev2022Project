@@ -41,7 +41,46 @@ class Admin extends Controller
         }
     }
     public function forgot(){
-        $this->view('Admin/forgot');
+    if(!isset($_POST['reset'])){
+            $this->view('Admin/forgot');
+      }else{
+        $admin = $this->adminModel->getAdminByUsername($_POST['name']);
+            
+        if($admin != null){
+             $hashed_pass = $admin->admin_pass_hash;
+             $password = $_POST['password'];
+             if(password_verify($password,$hashed_pass)){
+                    $newpassword = $_POST['newpassword'];
+                    $verifiedpassword = $_POST['verifiedpassword'];
+                    if($newpassword == $verifiedpassword){
+                        $data = [
+                        'admin_name' => trim($_POST['name']),
+                        'admin_pass_hash' => password_hash($_POST['newpassword'], PASSWORD_DEFAULT)
+                        ];
+                        if($this->adminModel->updateAdminPass($data)){
+                            echo 'Please wait updating password for the account '.trim($_POST['name']);
+                            echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
+                            $this->view('Admin/forgot');
+                        }
+                    } else {
+                        $data = [
+                            'msg' => "Passwords, Do not match!",
+                        ];
+                        $this->view('Admin/forgot',$data);
+                    }
+             }else{
+                  $data = [
+                    'msg' => "Password incorrect! for $admin->admin_name",
+                  ];
+                  $this->view('Admin/forgot',$data);
+             }
+        }else{
+             $data = [
+                 'msg' => "Admin: ". $_POST['username'] ." does not exists",
+             ];
+             $this->view('Admin/forgot',$data);
+        }
+      }
     }
     public function tables(){
         $data = [
@@ -80,8 +119,7 @@ class Admin extends Controller
             if($admin == null){
                 $data = [
                     'admin_name' => trim($_POST['name']),
-                    'admin_pass_hash' => password_hash($_POST['passwd'], PASSWORD_DEFAULT),
-                    'admin_mail' => trim($_POST['adminEmail'])
+                    'admin_pass_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT)
                 ];
                 if($this->adminModel->createAdmin($data)){
                         echo 'Please wait creating the account for '.trim($_POST['name']);

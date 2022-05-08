@@ -87,7 +87,7 @@
                                             $admin = $data["adminModel"]->getAdmin($post->admin_id);
                                             if ($admin == false)
                                             {
-                                                echo "Unknown"
+                                                echo "Unknown";
                                             }
                                             else
                                             {
@@ -147,7 +147,7 @@
                                             $admin = $data["adminModel"]->getAdmin($action->admin_id);
                                             if ($admin == false)
                                             {
-                                                echo "Unknown"
+                                                echo "Unknown";
                                             }
                                             else
                                             {
