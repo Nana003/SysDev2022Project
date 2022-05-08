@@ -144,7 +144,6 @@
                                             echo($action->ip_address);
                                         echo "</td>";
                                         echo "<td>";
-                                            // look into this cause shit no work(???)
                                             $admin = $data["adminModel"]->getAdmin($action->admin_id);
                                             if ($admin == false)
                                             {
