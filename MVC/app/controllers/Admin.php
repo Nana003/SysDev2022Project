@@ -22,6 +22,10 @@ class Admin extends Controller
                 if(password_verify($password,$hashed_pass)){
                     $data = [
                         'msg' => "Welcome, $admin->admin_name!",
+                        'adminModel' => $this->adminModel,
+                        'admins' => $this->adminModel->getAdmins(),
+                        'posts' => $this->postModel->getPosts(),
+                        'actions' => $this->logModel->getActions()
                     ];
                     logAction("ADMIN_LOGIN");
                     $this->view('Admin/tables',$data);
