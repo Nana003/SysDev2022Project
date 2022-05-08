@@ -19,6 +19,7 @@ class Admin extends Controller
                 $hashed_pass = $admin->admin_pass_hash;
                 $password = $_POST['password'];
                 if (password_verify($password, $hashed_pass)) {
+                    createSession($admin);
                     $data = [
                         'msg' => "Welcome, $admin->admin_name!",
                         'adminModel' => $this->adminModel,
@@ -46,7 +47,7 @@ class Admin extends Controller
 
     public function forgot()
     {
-        //TODO: login validate
+        //TODO: login validate (isLoggedIn())
         if (!isset($_POST['reset'])) {
             $this->view('Admin/forgot');
         } else {
@@ -59,6 +60,8 @@ class Admin extends Controller
                     $newpassword = $_POST['newpassword'];
                     $verifiedpassword = $_POST['verifiedpassword'];
                     if ($newpassword == $verifiedpassword) {
+                        logAction("ADMIN_PASS_RESET_SUCCESS");
+                        createSession($admin);
                         $data = [
                             'admin_name' => trim($_POST['name']),
                             'admin_pass_hash' => password_hash($_POST['newpassword'], PASSWORD_DEFAULT)
@@ -69,12 +72,14 @@ class Admin extends Controller
                             $this->view('Admin/forgot');
                         }
                     } else {
+                        logAction("ADMIN_PASS_RESET_FAIL_NONMATCH");
                         $data = [
-                            'msg' => "Passwords, Do not match!",
+                            'msg' => "Passwords do not match!",
                         ];
                         $this->view('Admin/forgot', $data);
                     }
                 } else {
+                    logAction("ADMIN_PASS_RESET_FAIL_INCORRECT");
                     $data = [
                         'msg' => "Password incorrect! for $admin->admin_name",
                     ];
@@ -91,7 +96,7 @@ class Admin extends Controller
 
     public function tables()
     {
-        //TODO: login validate
+        //TODO: login validate (isLoggedIn())
         logAction("TELEMETRY_READ");
         $data = [
             'adminModel' => $this->adminModel,
@@ -104,7 +109,7 @@ class Admin extends Controller
 
     public function addPost()
     {
-        //TODO: login validate
+        //TODO: login validate (isLoggedIn())
         if (!isset($_GET['addPost'])) {
             $this->view('Admin/addPost');
         } else {
@@ -122,7 +127,7 @@ class Admin extends Controller
 
     public function addAdministrator()
     {
-        //TODO: login validate WEBMASTER
+        //TODO: login validate WEBMASTER (isLoggedInWebmaster())
         if (!isset($_POST['addAdmin'])) {
             $this->view('Admin/addAdministrator');
         } else {
