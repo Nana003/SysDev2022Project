@@ -23,12 +23,14 @@ class Admin extends Controller
                     $data = [
                         'msg' => "Welcome, $admin->admin_name!",
                     ];
+                    logAction("ADMIN_LOGIN");
                     $this->view('Admin/tables',$data);
                 }
                 else{
                     $data = [
                         'msg' => "Password incorrect! for $admin->admin_name",
                     ];
+                    logAction("ADMIN_LOGIN_FAIL");
                     $this->view('Admin/login',$data);
                 }
             }
@@ -44,6 +46,7 @@ class Admin extends Controller
         $this->view('Admin/forgot');
     }
     public function tables(){
+        logAction("TELEMETRY_READ");
         $data = [
             'adminModel' => $this->adminModel,
             'admins' => $this->adminModel->getAdmins(),
@@ -66,7 +69,7 @@ class Admin extends Controller
                 'admin_id' => $_SESSION['admin_id']
             ];
             if ($this->postModel->createPost($data)) {
-                
+                logAction("POST_CREATE");
             }
         }
     }
@@ -84,6 +87,7 @@ class Admin extends Controller
                     'admin_mail' => trim($_POST['adminEmail'])
                 ];
                 if($this->adminModel->createAdmin($data)){
+                        logAction("ADMIN_CREATE");
                         echo 'Please wait creating the account for '.trim($_POST['name']);
                         echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
                 }
