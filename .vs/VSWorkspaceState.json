@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MVC",
+    "\\MVC\\app",
+    "\\MVC\\app\\config",
+    "\\MVC\\app\\controllers",
+    "\\MVC\\app\\core",
+    "\\MVC\\app\\views",
+    "\\MVC\\app\\views\\Contact",
+    "\\MVC\\app\\views\\Home",
+    "\\MVC\\app\\views\\includes"
+  ],
+  "SelectedNode": "\\MVC\\app\\views\\About\\aboutus.php",
+  "PreviewInSolutionExplorer": false
+}
