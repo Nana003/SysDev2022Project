@@ -10,16 +10,15 @@ class Admin extends Controller
 
     public function index()
     {
-        if(!isset($_POST['login'])){
+        if (!isset($_POST['login'])) {
             $this->view('Admin/login');
-        }
-        else{
+        } else {
             $admin = $this->adminModel->getAdminByUsername($_POST['username']);
-            
-            if($admin != null){
+
+            if ($admin != null) {
                 $hashed_pass = $admin->admin_pass_hash;
                 $password = $_POST['password'];
-                if(password_verify($password,$hashed_pass)){
+                if (password_verify($password, $hashed_pass)) {
                     $data = [
                         'msg' => "Welcome, $admin->admin_name!",
                         'adminModel' => $this->adminModel,
@@ -28,43 +27,44 @@ class Admin extends Controller
                         'actions' => $this->logModel->getActions()
                     ];
                     logAction("ADMIN_LOGIN");
-                    $this->view('Admin/tables',$data);
-                }
-                else{
+                    $this->view('Admin/tables', $data);
+                } else {
                     $data = [
                         'msg' => "Password incorrect! for $admin->admin_name",
                     ];
                     logAction("ADMIN_LOGIN_FAIL");
-                    $this->view('Admin/login',$data);
+                    $this->view('Admin/login', $data);
                 }
-            }
-            else{
+            } else {
                 $data = [
-                    'msg' => "Admin: ". $_POST['username'] ." does not exists",
+                    'msg' => "Admin: " . $_POST['username'] . " does not exists",
                 ];
-                $this->view('Admin/login',$data);
+                $this->view('Admin/login', $data);
             }
         }
     }
-    public function forgot(){
-    if(!isset($_POST['reset'])){
+
+    public function forgot()
+    {
+        //TODO: login validate
+        if (!isset($_POST['reset'])) {
             $this->view('Admin/forgot');
-      }else{
-        $admin = $this->adminModel->getAdminByUsername($_POST['name']);
-            
-        if($admin != null){
-             $hashed_pass = $admin->admin_pass_hash;
-             $password = $_POST['password'];
-             if(password_verify($password,$hashed_pass)){
+        } else {
+            $admin = $this->adminModel->getAdminByUsername($_POST['name']);
+
+            if ($admin != null) {
+                $hashed_pass = $admin->admin_pass_hash;
+                $password = $_POST['password'];
+                if (password_verify($password, $hashed_pass)) {
                     $newpassword = $_POST['newpassword'];
                     $verifiedpassword = $_POST['verifiedpassword'];
-                    if($newpassword == $verifiedpassword){
+                    if ($newpassword == $verifiedpassword) {
                         $data = [
-                        'admin_name' => trim($_POST['name']),
-                        'admin_pass_hash' => password_hash($_POST['newpassword'], PASSWORD_DEFAULT)
+                            'admin_name' => trim($_POST['name']),
+                            'admin_pass_hash' => password_hash($_POST['newpassword'], PASSWORD_DEFAULT)
                         ];
-                        if($this->adminModel->updateAdminPass($data)){
-                            echo 'Please wait updating password for the account '.trim($_POST['name']);
+                        if ($this->adminModel->updateAdminPass($data)) {
+                            echo 'Please wait updating password for the account ' . trim($_POST['name']);
                             echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
                             $this->view('Admin/forgot');
                         }
@@ -72,23 +72,26 @@ class Admin extends Controller
                         $data = [
                             'msg' => "Passwords, Do not match!",
                         ];
-                        $this->view('Admin/forgot',$data);
+                        $this->view('Admin/forgot', $data);
                     }
-             }else{
-                  $data = [
-                    'msg' => "Password incorrect! for $admin->admin_name",
-                  ];
-                  $this->view('Admin/forgot',$data);
-             }
-        }else{
-             $data = [
-                 'msg' => "Admin: ". $_POST['username'] ." does not exists",
-             ];
-             $this->view('Admin/forgot',$data);
+                } else {
+                    $data = [
+                        'msg' => "Password incorrect! for $admin->admin_name",
+                    ];
+                    $this->view('Admin/forgot', $data);
+                }
+            } else {
+                $data = [
+                    'msg' => "Admin: " . $_POST['username'] . " does not exists",
+                ];
+                $this->view('Admin/forgot', $data);
+            }
         }
-      }
     }
-    public function tables(){
+
+    public function tables()
+    {
+        //TODO: login validate
         logAction("TELEMETRY_READ");
         $data = [
             'adminModel' => $this->adminModel,
@@ -99,12 +102,12 @@ class Admin extends Controller
         $this->view('Admin/tables', $data);
     }
 
-
-
-    public function addPost() {
-        if(!isset($_GET['addPost'])) {
+    public function addPost()
+    {
+        //TODO: login validate
+        if (!isset($_GET['addPost'])) {
             $this->view('Admin/addPost');
-        }else{
+        } else {
             $data = [
                 'description' => trim($_POST(['description'])),
                 'post_title' => trim($_POST(['title'])),
@@ -117,30 +120,30 @@ class Admin extends Controller
         }
     }
 
-    public function addAdministrator() {
-        if(!isset($_POST['addAdmin'])){
+    public function addAdministrator()
+    {
+        //TODO: login validate WEBMASTER
+        if (!isset($_POST['addAdmin'])) {
             $this->view('Admin/addAdministrator');
-        }
-        else{
+        } else {
             $admin = $this->adminModel->getAdminByUsername($_POST['name']);
-            if($admin == null){
+            if ($admin == null) {
                 $data = [
                     'admin_name' => trim($_POST['name']),
                     'admin_pass_hash' => password_hash($_POST['passwd'], PASSWORD_DEFAULT),
                     'admin_mail' => trim($_POST['adminEmail'])
                 ];
-                if($this->adminModel->createAdmin($data)){
-                        logAction("ADMIN_CREATE");
-                        echo 'Please wait creating the account for '.trim($_POST['name']);
-                        echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
+                if ($this->adminModel->createAdmin($data)) {
+                    logAction("ADMIN_CREATE");
+                    echo 'Please wait creating the account for ' . trim($_POST['name']);
+                    echo '<meta http-equiv="Refresh" content="2; url=/MVC/Login/">';
                 }
-            }
-            else{
+            } else {
                 $data = [
-                    'msg' => "Admin: ". $_POST['name'] ." already exists",
+                    'msg' => "Admin: " . $_POST['name'] . " already exists",
                 ];
-                $this->view('Admin/addAdministrator',$data);
-            }  
+                $this->view('Admin/addAdministrator', $data);
+            }
         }
-    } 
+    }
 }
