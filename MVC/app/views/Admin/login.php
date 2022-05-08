@@ -27,7 +27,13 @@
             <input type="checkbox"> Remember me</div>   
             <div class="forgotpassword" style="text-align: center;"> Forgot <a href="<?php echo URLROOT; ?>/admin/forgot"> password? </a>   
             </div>
-        </div>   
+        </div>  
+        <?php
+
+        if($data !=[]){
+            echo '<div class="alert alert-danger" role="alert">'.$data['msg'].'</div>';
+        }
+        ?>
     </form>     
 </body>     
 </html> 

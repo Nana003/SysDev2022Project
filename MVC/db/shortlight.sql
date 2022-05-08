@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(50) NOT NULL,
-  `admin_pass_hash` varchar(50) NOT NULL,
+  `admin_pass_hash` varchar(255) NOT NULL,
   `admin_mail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
