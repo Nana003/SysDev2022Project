@@ -34,6 +34,11 @@
                   <li>
                       <a href="<?php echo URLROOT . "/Admin"; ?>">Administration Login</a>
                   </li>
+                  <?php
+                    if (isLoggedIn()) {
+                      echo "<li><a href='/MVC/Admin/logout';>Logout</a></li>";
+                    }
+                   ?>
               </ul>
               <p>ShortLight Productions 2022</p>
           </div>

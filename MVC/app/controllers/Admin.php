@@ -19,7 +19,7 @@ class Admin extends Controller
                 $hashed_pass = $admin->admin_pass_hash;
                 $password = $_POST['password'];
                 if (password_verify($password, $hashed_pass)) {
-                    createSession($admin);
+                    $this->createSession($admin);
                     $data = [
                         'msg' => "Welcome, $admin->admin_name!",
                         'adminModel' => $this->adminModel,
@@ -173,5 +173,16 @@ class Admin extends Controller
                 $this->view('Admin/addAdministrator', $data);
             }
         }
+    }
+
+    public function createSession($admin){
+        $_SESSION['admin_id'] = $admin->admin_id;
+        $_SESSION['admin_name'] = $admin->admin_name;
+    }
+
+    public function logout(){
+        unset($_SESSION['admin_id']);
+        session_destroy();
+        echo '<meta http-equiv="Refresh" content="1; url=/MVC/Login/">';
     }
 }
